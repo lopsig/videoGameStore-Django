@@ -1,16 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Contacto - Tienda Video Juegos</title>
-    </head>
-    <body>
-        <h1>Contacto</h1>
-        <p>Envía un correo a jonathan.lopsig@gmail.com</p>
-        <footer>
-           <p>2026 lopsig</p>
-            <a href="{% url 'home' %}">Home</a>
-        </footer>
-    </body>
+{% extends "base.html" %}"}
+{% load static %}
 
-</html>
+{% block title %} Contacto - Mundo Video Juegos {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-body">Contacto</h1>
+    <p class="text-body">Envía un correo a
+        <a href="mailto:jonathan.lopsig@gmail.com">jonathan.lopsig@gmail.com</a>
+    </p>
+
+    <div class = "alert alert-primary">Horario de Atención de lunes a sábado de 8:00 a 19:00</div>
+    <div class = "alert alert-warning">El tiempo de respuesta puede variar según la demanda</div>
+    <div class = "alert alert-danger">No envies información sensible por este formulario</div>
+</div>
+{% endblock %}
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--    <head>-->
+<!--        <meta charset="utf-8">-->
+<!--        <title>Contacto - Tienda Video Juegos</title>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <h1>Contacto</h1>-->
+<!--        <p>Envía un correo a jonathan.lopsig@gmail.com</p>-->
+<!--        <footer>-->
+<!--           <p>2026 lopsig</p>-->
+<!--            <a href="{% url 'home' %}">Home</a>-->
+<!--        </footer>-->
+<!--    </body>-->
+
+<!--</html>-->

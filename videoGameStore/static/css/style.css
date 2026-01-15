@@ -1,0 +1,14 @@
+#toggle-theme {
+    width: 45px;
+    height: 45px;
+}
+
+.navbar-brand img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar-brand span {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 5px #000;
+}
