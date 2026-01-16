@@ -1,0 +1,56 @@
+{% extends "base.html" %}"}
+{% load static %}
+
+
+
+{% block title %} Lista de Juegos {% endblock %}
+
+{% block content %}
+<h2 class="text-body">Lista de Juegos</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+    {% for game in list_games %}
+    <div class="col">
+        <div class="card h-100">
+            <img src="{% static 'img/portadas/' %}{{game.image}}" class="card-img-top" alt="img">
+            <div class="card-body">
+                <h5 class="card-title">{{game.name}}</h5>
+                <p class="card-text">Plataforma: {{game.platarfom}}</p>
+                <p class="card-text">Precio: ${{game.price}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<nav aria-label="Pagenavigation">
+    <ul class="pagination justify-content-center">
+        {% if list_games.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{list_games.previous_page_number}}">Anterior</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Primera</span></li>
+        <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+        {% endif %}
+
+        {% for num in list_games.paginator.page_range %}
+        {% if list_games.number == num %}
+        <li class="page-item active"><span class="page-link">{{num}}</span></li>
+        {% elif num > list_games.number|add:'-3' and num < list_games.number|add:'3' %}
+        <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if list_games.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{list_games.next_page_number}}">Siguiente</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{list_games.paginator.num_pages}}">Última</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+        <li class="page-item disabled"><span class="page-link">Última</span></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock %}
