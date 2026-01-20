@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Resultados Búsqueda {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4 text-body">Resultados para "{{ query }}"</h2>
+
+    {% if list_games %}
+    <div class="row">
+        {% for game in list_games %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'img/portadas/'|add:game.image %}" class="card-img-top" alt="{{game.name}}">
+                <div class="card-body text-start">
+                <h5 class="card-title">{{game.name}}</h5>
+                <p class="card-text">{{game.platform}}</p>
+                <p class="card-text fw-bold">${{game.price}}</p>
+                </div>
+            </div>
+        </div>
+     {% endfor %}
+    </div>
+
+
+    <nav aria-label="Pagenavigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if list_games.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?q={{query}}&page={{list_games.previous_page_number}}">Anterior</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+        </li>
+        {% endif %}
+
+        {% for num in list_games.paginator.page_range %}
+        {% if list_games.number == num %}
+        <li class="page-item active">
+            <span class="page-link">{{num}}</span>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?q={{ query }}&page={{ num }}">{{ num }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if list_games.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?q={{query}}&page={{list_games.next_page_number}}">Siguiente</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+        {% endif %}
+    </ul>
+</nav>
+    {% else %}
+    <p class="text-center mt-4 text-body"> No se encontraron resultados.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

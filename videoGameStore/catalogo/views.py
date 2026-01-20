@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from catalogo.models import Game
 
@@ -13,3 +13,10 @@ def list_games(request):
     context_catalog_games = {'list_games': page_obj}
     return render(request, 'catalogo/list_games.html',
                   context_catalog_games)
+
+def detail_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+
+    context = {'game': game}
+
+    return render(request, 'catalogo/detail_game.html', context)

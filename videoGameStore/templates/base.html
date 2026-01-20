@@ -54,16 +54,22 @@
                             </li>
                         </ul>
 
-                        <form class="d-flex me-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-                            <button class="btn btn-outline-info" type="submit">Buscar</button>
+                        <form class="d-flex me-3" role="search"
+                              action="{% url 'search_games' %}"
+                              method="get">
+                            <input class="form-control me-2"
+                                   type="search" name="q"
+                                   placeholder="Buscar..."
+                                   aria-label="Buscar" value="{{request.GET.q|default:''}}">
+                            <button class="btn btn-outline-info"
+                                    type="submit">Buscar</button>
                         </form>
                     </div>
                 </div>
             </nav>
         </header>
 
-        <main class="py-5 bg-body-secondary text-center text-dark">
+        <main class="py-5 bg-body-secondary text-center text-dark d-flex justify-content-center align-items-center">
             <div class="container">
                 {% block content %}
                 <h2 class="text-body">Tu tienda de confianza</h2>
@@ -72,7 +78,8 @@
             </div>
         </main>
 
-        <footer class="bg-dark text-white pt-4 pb-2 mt-5">
+<!--        FOOTER-->
+        <footer class="bg-dark text-white pt-4 pb-2">
             <div class="container">
                 <div class="row small">
                     <div class="col-md-4 mb-3">

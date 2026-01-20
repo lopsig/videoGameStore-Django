@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block title %} {{ game.name }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row g5 align-items-start">
+
+        <div class="col-12 col-md-4">
+            <div class="card shadow-sm border-0 overflow-hidden">
+                <img src="{% static 'img/portadas/' %}{{ game.image}}"
+                     class="detalle-img rounded-3 img-fluid"
+                     alt="Imagen del juego {{ game.name }}" />">
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8 text-start">
+            <h1 class="display-5 fw-bold mb-3 text-body">{{ game.name }}</h1>
+            <div class="mb-4">
+                <h2 class="text-succes fw-bold">$ {{ game.price}}</h2>
+                <small class="text-body-secondary"> Incluye IVA</small>
+            </div>
+
+            <p class="text-body mb-4"><strong>Disponible en: </strong>{{ game.platform }}</p>
+
+            <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
+                <a href="#" class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
+                    <i class="fas fa-shopping-cart me-2"></i>Comprar
+                </a>
+                <button class="btn btn-outline-danger btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
+                    <i class="fas fa-heart me-2"></i> Agregar a favoritos
+                </button>
+                <a href="{% url 'list_games' %}" class="btn btn-outline-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center mt-3 mt-sm-0">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al catálogo
+                </a>
+            </div>
+
+            <div class="mb-5">
+                <h5 class="fw-semibold mb-3 text-body">Detalles del producto</h5>
+                <p class="mb-1 text-body"><strong>Plataforma: </strong>{{ game.platform }}</p>
+                {% if game.description %}
+                <p class="text-body text-body-secondary">{{ game.description }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <h4 class="fw-semibold mb-3 text-body">Reseñas</h4>
+                <p class="text-body text-body-secondary fst-italic">Sección de reseñas de usuarios</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
